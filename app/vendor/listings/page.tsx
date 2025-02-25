@@ -1,27 +1,3 @@
-<style>
-@media (max-width: 768px) {
-    body, html {
-        overflow-x: hidden !important; /* Prevent horizontal scrolling */
-    }
-
-    .my-listing-container {
-        display: flex;
-        flex-direction: column; /* Force vertical layout */
-        align-items: center;
-        width: 100%;
-    }
-
-    .listing-item {
-        width: 100%; /* Ensure items take full width to prevent overflow */
-    }
-
-    .listing-grid {
-        display: flex;
-        flex-direction: column; /* Stack items vertically */
-        gap: 10px; /* Add spacing between items */
-    }
-}
-</style>
 "use client"
 
 import { useEffect, useState } from "react"
