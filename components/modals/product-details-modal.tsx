@@ -4,8 +4,10 @@ import Image from "next/image"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
-import { useWallet } from "@/context/wallet-context"
+import { useDemoAuth } from "@/context/demo-auth-context"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Loader2 } from "lucide-react"
+import { useState } from "react"
 
 interface ProductDetailsModalProps {
   product: any | null
@@ -13,28 +15,37 @@ interface ProductDetailsModalProps {
   onClose: () => void
 }
 
+const DEMO_ADDRESS = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+
 export function ProductDetailsModal({ product, isOpen, onClose }: ProductDetailsModalProps) {
-  const { account } = useWallet()
+  const { user } = useDemoAuth()
   const { toast } = useToast()
+  const [isProcessing, setIsProcessing] = useState(false)
 
   if (!product) {
     return null
   }
 
-  const handlePurchase = () => {
-    if (!account) {
+  const handlePurchase = async () => {
+    if (!user) {
       toast({
-        title: "Wallet Required",
-        description: "Please connect your wallet to make a purchase",
+        title: "Account Required",
+        description: "Please register or sign in to make a purchase",
         variant: "destructive",
       })
       return
     }
 
+    setIsProcessing(true)
+    // Simulate transaction processing
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     toast({
-      title: "Purchase Initiated",
-      description: "Transaction simulation in progress...",
+      title: "Purchase Successful",
+      description: `Successfully purchased ${product.name} credits`,
     })
+    setIsProcessing(false)
+    onClose()
   }
 
   return (
@@ -94,8 +105,9 @@ export function ProductDetailsModal({ product, isOpen, onClose }: ProductDetails
               </div>
 
               <div className="mt-6">
-                <Button onClick={handlePurchase} className="w-full">
-                  Purchase Credits
+                <Button onClick={handlePurchase} className="w-full" disabled={isProcessing}>
+                  {isProcessing && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isProcessing ? "Processing..." : "Purchase Credits"}
                 </Button>
               </div>
             </div>

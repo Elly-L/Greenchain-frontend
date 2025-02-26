@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useDemoAuth } from "@/context/demo-auth-context"
 import { vendors } from "@/lib/demo-data"
 import { Search, UserPlus } from "lucide-react"
@@ -56,35 +55,73 @@ export default function ManageVendors() {
               />
             </div>
           </div>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Project Type</TableHead>
-                <TableHead>Price/Unit</TableHead>
-                <TableHead>Total Sales</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredVendors.map((vendor) => (
-                <TableRow key={vendor.id}>
-                  <TableCell>{vendor.name}</TableCell>
-                  <TableCell>{vendor.projectType}</TableCell>
-                  <TableCell>${vendor.pricePerUnit}</TableCell>
-                  <TableCell>{vendor.totalSales}</TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm" className="mr-2">
-                      Edit
-                    </Button>
-                    <Button variant="destructive" size="sm">
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+
+          {/* Desktop view */}
+          <div className="hidden md:block">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b">
+                  <th className="py-4 px-4 text-left">Name</th>
+                  <th className="py-4 px-4 text-left">Project Type</th>
+                  <th className="py-4 px-4 text-left">Price/Unit</th>
+                  <th className="py-4 px-4 text-left">Total Sales</th>
+                  <th className="py-4 px-4 text-left">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredVendors.map((vendor) => (
+                  <tr key={vendor.id} className="border-b">
+                    <td className="py-4 px-4">{vendor.name}</td>
+                    <td className="py-4 px-4">{vendor.projectType}</td>
+                    <td className="py-4 px-4">${vendor.pricePerUnit}</td>
+                    <td className="py-4 px-4">{vendor.totalSales}</td>
+                    <td className="py-4 px-4">
+                      <Button variant="outline" size="sm" className="mr-2">
+                        Edit
+                      </Button>
+                      <Button variant="destructive" size="sm">
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile view */}
+          <div className="md:hidden space-y-4">
+            {filteredVendors.map((vendor) => (
+              <div key={vendor.id} className="border rounded-lg p-4 space-y-3">
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm font-medium">Name</span>
+                    <span>{vendor.name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm font-medium">Project Type</span>
+                    <span>{vendor.projectType}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm font-medium">Price/Unit</span>
+                    <span>${vendor.pricePerUnit}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm font-medium">Total Sales</span>
+                    <span>{vendor.totalSales}</span>
+                  </div>
+                </div>
+                <div className="flex justify-end space-x-2">
+                  <Button variant="outline" size="sm">
+                    Edit
+                  </Button>
+                  <Button variant="destructive" size="sm">
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>

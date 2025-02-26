@@ -45,49 +45,51 @@ export default function Profile() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-6">
-            <div className="grid gap-1">
-              <p className="text-sm font-medium text-muted-foreground">Location</p>
-              <p className="text-sm">{profile?.location}</p>
+          <div className="grid gap-8">
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <p className="text-sm font-medium text-muted-foreground">Location</p>
+                <p className="text-base">{profile?.location}</p>
+              </div>
+
+              {user.role === "buyer" && (
+                <>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Total Purchases</p>
+                    <p className="text-base">{profile?.totalPurchases} transactions</p>
+                  </div>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Credits Bought</p>
+                    <p className="text-base">{profile?.creditsBought} credits</p>
+                  </div>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Preferred Project Types</p>
+                    <p className="text-base">{profile?.preferences?.projectTypes.join(", ")}</p>
+                  </div>
+                </>
+              )}
+
+              {user.role === "vendor" && (
+                <>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Company Name</p>
+                    <p className="text-base">{profile?.companyName}</p>
+                  </div>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Total Sales</p>
+                    <p className="text-base">{profile?.totalSales} transactions</p>
+                  </div>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Credits Available</p>
+                    <p className="text-base">{profile?.creditsAvailable} credits</p>
+                  </div>
+                  <div className="grid gap-2">
+                    <p className="text-sm font-medium text-muted-foreground">Credits Sold</p>
+                    <p className="text-base">{profile?.creditsSold} credits</p>
+                  </div>
+                </>
+              )}
             </div>
-
-            {user.role === "buyer" && (
-              <>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Total Purchases</p>
-                  <p className="text-sm">{profile?.totalPurchases} transactions</p>
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Credits Bought</p>
-                  <p className="text-sm">{profile?.creditsBought} credits</p>
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Preferred Project Types</p>
-                  <p className="text-sm">{profile?.preferences?.projectTypes.join(", ")}</p>
-                </div>
-              </>
-            )}
-
-            {user.role === "vendor" && (
-              <>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Company Name</p>
-                  <p className="text-sm">{profile?.companyName}</p>
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Total Sales</p>
-                  <p className="text-sm">{profile?.totalSales} transactions</p>
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Credits Available</p>
-                  <p className="text-sm">{profile?.creditsAvailable} credits</p>
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-sm font-medium text-muted-foreground">Credits Sold</p>
-                  <p className="text-sm">{profile?.creditsSold} credits</p>
-                </div>
-              </>
-            )}
           </div>
         </CardContent>
       </Card>

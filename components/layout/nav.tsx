@@ -17,18 +17,30 @@ const roleNavigation = {
     { name: "Marketplace", href: "/" },
     { name: "My Orders", href: "/orders" },
     { name: "Profile", href: "/profile" },
+    { name: "View Blockchain", href: "/blockchain" },
+    { name: "About", href: "/about" },
   ],
   vendor: [
     { name: "Marketplace", href: "/" },
     { name: "My Listings", href: "/vendor/listings" },
+    { name: "Groups", href: "/vendor/groups" },
+    { name: "Chama", href: "/vendor/chama" },
     { name: "Profile", href: "/profile" },
+    { name: "View Blockchain", href: "/blockchain" },
+    { name: "About", href: "/about" },
   ],
   admin: [
     { name: "Admin Dashboard", href: "/admin/dashboard" },
     { name: "Manage Users", href: "/admin/users" },
     { name: "Manage Vendors", href: "/admin/vendors" },
+    { name: "View Blockchain", href: "/blockchain" },
+    { name: "About", href: "/about" },
   ],
-  default: [{ name: "Marketplace", href: "/" }],
+  default: [
+    { name: "Marketplace", href: "/" },
+    { name: "View Blockchain", href: "/blockchain" },
+    { name: "About", href: "/about" },
+  ],
 }
 
 export function Nav() {
@@ -82,7 +94,7 @@ export function Nav() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="flex flex-col h-full w-[240px] sm:w-[300px]">
+              <SheetContent side="right" className="flex flex-col h-full w-[240px] sm:w-[300px]">
                 <div className="flex-1">
                   {/* Mobile User Nav */}
                   {isAuthenticated && (

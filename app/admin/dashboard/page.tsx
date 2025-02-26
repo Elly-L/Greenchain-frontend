@@ -23,7 +23,7 @@ export default function AdminDashboard() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Admin Dashboard</h1>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
@@ -58,33 +58,35 @@ export default function AdminDashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card>
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest platform activities and events</CardDescription>
           </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {demoAdminStats.recentActivity.map((activity) => (
-                  <TableRow key={activity.id}>
-                    <TableCell>{activity.type}</TableCell>
-                    <TableCell>{activity.name}</TableCell>
-                    <TableCell>{activity.date}</TableCell>
-                    <TableCell>{activity.status}</TableCell>
+          <CardContent className="p-0">
+            <div className="overflow-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Status</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {demoAdminStats.recentActivity.map((activity) => (
+                    <TableRow key={activity.id}>
+                      <TableCell>{activity.type}</TableCell>
+                      <TableCell>{activity.name}</TableCell>
+                      <TableCell>{activity.date}</TableCell>
+                      <TableCell>{activity.status}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
 

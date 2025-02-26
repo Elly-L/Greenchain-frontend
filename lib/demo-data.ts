@@ -201,3 +201,62 @@ export const demoAdminStats = {
   },
 }
 
+// Demo blockchain transactions
+export const blockchainTransactions = [
+  {
+    id: 1,
+    hash: "0x1234...5678",
+    from: "0xABCD...EFGH",
+    to: "0x9876...5432",
+    amount: 25000,
+    type: "Carbon Sale",
+    timestamp: "2024-02-26 14:30:45",
+    status: "Confirmed",
+    credits: 1000,
+  },
+  {
+    id: 2,
+    hash: "0x8765...4321",
+    from: "0x1111...2222",
+    to: "0x3333...4444",
+    amount: 15000,
+    type: "Chama Deduction",
+    timestamp: "2024-02-26 13:15:22",
+    status: "Confirmed",
+    credits: 600,
+  },
+  {
+    id: 3,
+    hash: "0x5555...6666",
+    from: "0x7777...8888",
+    to: "0x9999...0000",
+    amount: 35000,
+    type: "Payment to Vendor",
+    timestamp: "2024-02-26 12:45:10",
+    status: "Confirmed",
+    credits: 1400,
+  },
+  {
+    id: 4,
+    hash: "0xAAAA...BBBB",
+    from: "0xCCCC...DDDD",
+    to: "0xEEEE...FFFF",
+    amount: 5000,
+    type: "Group Pool Contribution",
+    timestamp: "2024-02-26 11:30:15",
+    status: "Confirmed",
+    credits: 200,
+  },
+  {
+    id: 5,
+    hash: "0x2468...1357",
+    from: "0xFEDC...BA98",
+    to: "0x1357...2468",
+    amount: 12500,
+    type: "Carbon Sale",
+    timestamp: "2024-02-26 10:15:30",
+    status: "Confirmed",
+    credits: 500,
+  },
+]
+
